@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: market-intel-agent
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120
+    envVars:
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: REKA_API_KEY
+        sync: false
+      - key: MODULATE_API_KEY
+        sync: false
