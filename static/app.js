@@ -133,7 +133,7 @@
         const ul = el('ul', 'tag-list');
         items.forEach((item, i) => {
             const li = el('li', 'tag-item');
-            const bullet = el('span', 'tag-bullet', String(i + 1));
+            const bullet = el('span', 'tag-bullet', `${String(i + 1).padStart(2, '0')}.`);
             li.appendChild(bullet);
             li.appendChild(el('span', null, item));
             ul.appendChild(li);
