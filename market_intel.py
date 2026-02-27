@@ -53,7 +53,7 @@ def _chat(system: str, user: str) -> str:
     return response.responses[0].message.content.strip()
 
 
-def _parse_json(raw: str) -> dict | list:
+def _parse_json(raw: str):
     """
     Robustly parse JSON from an LLM response that may be wrapped in
     markdown code fences (```json ... ``` or ``` ... ```).
