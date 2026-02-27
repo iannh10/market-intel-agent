@@ -53,6 +53,24 @@ def _chat(system: str, user: str) -> str:
     return response.responses[0].message.content.strip()
 
 
+def _parse_json(raw: str) -> dict | list:
+    """
+    Robustly parse JSON from an LLM response that may be wrapped in
+    markdown code fences (```json ... ``` or ``` ... ```).
+    """
+    text = raw.strip()
+    # Strip opening fence: ```json or ```
+    if text.startswith("```"):
+        text = text[3:]
+        if text.startswith("json"):
+            text = text[4:]
+        text = text.strip()
+    # Strip closing fence
+    if text.endswith("```"):
+        text = text[:-3].strip()
+    return json.loads(text)
+
+
 # ─────────────────────────────────────────────
 # AGENT 1 — Data Agent
 #   Input : topic (str)
@@ -145,8 +163,8 @@ def trend_agent(articles: list[dict], emit: Emitter = None) -> dict:
 
     # --- Parse JSON robustly ---
     try:
-        result = json.loads(raw)
-    except json.JSONDecodeError:
+        result = _parse_json(raw)
+    except (json.JSONDecodeError, ValueError):
         # Fallback: wrap raw text so pipeline keeps running
         result = {
             "trends": [raw],
@@ -195,8 +213,8 @@ def strategy_agent(trend_data: dict, emit: Emitter = None) -> dict:
     )
 
     try:
-        result = json.loads(raw)
-    except json.JSONDecodeError:
+        result = _parse_json(raw)
+    except (json.JSONDecodeError, ValueError):
         result = {
             "opportunities":    [raw],
             "recommendations":  ["Unable to parse structured output."],
@@ -245,8 +263,8 @@ def risk_agent(trend_data: dict, strategy_data: dict, emit: Emitter = None) -> d
     )
 
     try:
-        result = json.loads(raw)
-    except json.JSONDecodeError:
+        result = _parse_json(raw)
+    except (json.JSONDecodeError, ValueError):
         result = {
             "risks":         [raw],
             "weak_signals":  ["Unable to parse structured output."],
