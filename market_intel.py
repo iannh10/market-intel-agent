@@ -31,7 +31,7 @@ MODULATE_API_KEY = os.getenv("MODULATE_API_KEY", "YOUR_MODULATE_KEY")  # optiona
 
 TAVILY_ENDPOINT = "https://api.tavily.com/search"
 REKA_MODEL      = "reka-core-20240501"   # use reka-flash for faster speeds
-MAX_ARTICLES    = 5               # number of news articles to fetch
+MAX_ARTICLES    = 10               # number of news articles to fetch
 
 client = Reka(api_key=REKA_API_KEY)
 

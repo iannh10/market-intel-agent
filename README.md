@@ -78,7 +78,7 @@ topic = "AI hardware market"   # ← edit here
 
 | Parameter | Location | Default |
 |---|---|---|
-| Number of articles | `MAX_ARTICLES` | `5` |
+| Number of articles | `MAX_ARTICLES` | `10` |
 | AI model | `REKA_MODEL` | `reka-core-20240501` |
 | Topic | `__main__` block | `"AI hardware market"` |
 | Voice output | `include_voice=True` | `True` |

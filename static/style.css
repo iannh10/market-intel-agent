@@ -604,7 +604,7 @@ body {
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -639,6 +639,7 @@ body {
     --ca: var(--accent);
     --ca-dim: var(--accent-dim);
     --card-delay: 0.04s;
+    grid-column: 1 / -1;
 }
 
 .card-trends {
@@ -699,6 +700,12 @@ body {
 }
 
 /* News items */
+#newsBody {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+}
+
 .news-item {
     padding: 12px 0;
     border-bottom: 1px solid var(--border);
@@ -857,6 +864,11 @@ body {
         grid-template-columns: 1fr;
     }
 
+    #newsBody {
+        grid-template-columns: 1fr;
+    }
+
+    .card-news,
     .card-voice {
         grid-column: unset;
     }
