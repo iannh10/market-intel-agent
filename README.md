@@ -1,5 +1,7 @@
 # Multi-Agent Market Intelligence System
 
+**[✨ Live Demo: Test the platform here](https://market-intel-agent-264y.onrender.com/)**
+
 A hackathon prototype that simulates a team of AI analysts collaborating to generate market intelligence from real-time news.
 
 ## Architecture
