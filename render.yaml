@@ -2,8 +2,9 @@ services:
   - type: web
     name: market-intel-agent
     env: python
+    pythonVersion: "3.11.9"
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
     envVars:
       - key: TAVILY_API_KEY
         sync: false
